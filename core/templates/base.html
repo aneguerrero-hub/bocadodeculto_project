@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bocado de Culto</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'portada' %}">Inicio</a> | 
+            <a href="{% url 'lista_platos' %}">Platos</a>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

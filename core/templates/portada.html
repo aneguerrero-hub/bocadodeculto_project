@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Portada - Platos Destacados por País</h1>
+<div class="contenedor-platos">
+    {% for plato in platos_destacados %}
+        <div class="tarjeta-plato">
+            <h2>{{ plato.nombre }}</h2>
+            <p><strong>País:</strong> {{ plato.pais_origen.nombre }}</p>
+            <a href="{% url 'detalle_plato' plato.id %}">Ver detalle</a>
+        </div>
+    {% empty %}
+        <p>No hay platos registrados actualmente.</p>
+    {% endfor %}
+</div>
+{% endblock %}
