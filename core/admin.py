@@ -1,17 +1,14 @@
 from django.contrib import admin
-from .models import Categoria, Plato, Pelicula
+from .models import Pais, Plato, Pelicula
 
-@admin.register(Categoria)
-class CategoriaAdmin(admin.ModelAdmin):
+@admin.register(Pais)
+class PaisAdmin(admin.ModelAdmin):
     list_display = ('id', 'nombre')
 
 @admin.register(Plato)
 class PlatoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'precio', 'categoria')
-    list_filter = ('categoria',)
-    search_fields = ('nombre', 'descripcion')
+    list_display = ('id', 'nombre', 'precio', 'pais_origen')
 
 @admin.register(Pelicula)
 class PeliculaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'titulo', 'director', 'plato_maridado')
-    search_fields = ('titulo', 'director')
+    list_display = ('id', 'titulo', 'director', 'pais')
