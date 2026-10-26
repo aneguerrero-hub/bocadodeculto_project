@@ -1,0 +1,152 @@
+/* ========================================
+   1. GENERAL
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff8ef;
+    color: #30251f;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+}
+
+/* ========================================
+   2. HEADER AND NAVIGATION
+======================================== */
+
+header {
+    background-color: #7b2d26;
+    color: white;
+    padding: 24px;
+    text-align: center;
+}
+
+header h1 {
+    margin-top: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   3. HOMEPAGE
+======================================== */
+
+.portada {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.portada h2 {
+    color: #7b2d26;
+}
+
+/* ========================================
+   4. LISTS AND CARDS
+======================================== */
+
+.grid-listado {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px #00000012;
+}
+
+.tarjeta h3 {
+    color: #7b2d26;
+}
+
+/* ========================================
+   5. DETAIL PAGES
+======================================== */
+
+.detalle {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.detalle img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* ========================================
+   6. BUTTONS
+======================================== */
+
+.boton {
+    display: inline-block;
+    background-color: #7b2d26;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.boton:hover {
+    background-color: #54201b;
+}
+
+/* ========================================
+   7. FOOTER
+======================================== */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* ========================================
+   8. MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+    header {
+        padding: 18px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    main {
+        margin: 20px auto;
+    }
+}
