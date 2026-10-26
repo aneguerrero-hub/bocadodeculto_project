@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado General de Platos</h1>
+<ul>
+    {% for plato in platos %}
+        <li>
+            <a href="{% url 'detalle_plato' plato.id %}"><strong>{{ plato.nombre }}</strong></a> 
+            (País: {{ plato.pais_origen.nombre }})
+        </li>
+    {% empty %}
+        <li>No hay platos disponibles.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
