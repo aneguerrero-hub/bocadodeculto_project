@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Listado de películas</h1>
+
+<ul>
+    {% for pelicula in peliculas %}
+        <li>
+            <strong>
+                <a href="{% url 'detalle_pelicula' pelicula.id %}">
+                    {{ pelicula.titulo }}
+                </a>
+            </strong>
+            — Director: {{ pelicula.director }}
+            — País:
+            <a href="{% url 'detalle_pais' pelicula.pais.id %}">
+                {{ pelicula.pais.nombre }}
+            </a>
+        </li>
+    {% empty %}
+        <li>No hay películas registradas.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
