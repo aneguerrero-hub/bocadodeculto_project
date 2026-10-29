@@ -2,11 +2,6 @@
 
 Proyecto web colaborativo en Django para explorar la relación entre platos, países y películas.
 
-## Requisitos
-
-- Python 3.10 o superior compatible con la versión de Django instalada.
-- Django (la versión utilizada en el entorno de desarrollo del proyecto es 6.1.2).
-
 ## Puesta en marcha
 
 Desde la carpeta que contiene `manage.py`:
