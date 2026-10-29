@@ -1,15 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Platos | Bocado de Culto{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/platos.css' %}">{% endblock %}
 
 {% block content %}
-<h1>Listado General de Platos</h1>
-<ul>
+<header class="page-heading">
+    <p class="eyebrow">La carta cinematográfica</p>
+    <h1>Platos de culto</h1>
+    <p>Recetas, antojos y bocados memorables que aparecen en la gran pantalla.</p>
+    <span class="heading-count">{{ platos|length }} plato{{ platos|length|pluralize:"s" }} en la carta</span>
+</header>
+
+<div class="card-grid dish-grid">
     {% for plato in platos %}
-        <li>
-            <a href="{% url 'detalle_plato' plato.id %}"><strong>{{ plato.nombre }}</strong></a> 
-            (País: {{ plato.pais_origen.nombre }})
-        </li>
+        <article class="info-card dish-card">
+            <div class="card-topline">
+                <a class="tag tag-link" href="{% url 'detalle_pais' plato.pais_origen.id %}">{{ plato.pais_origen.nombre }}</a>
+                <span class="film-count">{{ plato.num_peliculas }} película{{ plato.num_peliculas|pluralize:"s" }}</span>
+            </div>
+            <h2><a href="{% url 'detalle_plato' plato.id %}">{{ plato.nombre }}</a></h2>
+            <p>{{ plato.descripcion|truncatewords:30 }}</p>
+            <div class="card-footer">
+                <span class="price">Precio: {{ plato.precio }}</span>
+                <a class="text-link" href="{% url 'detalle_plato' plato.id %}">Ver ficha <span aria-hidden="true">↗</span></a>
+            </div>
+        </article>
     {% empty %}
-        <li>No hay platos disponibles.</li>
+        <div class="empty-state"><h2>No hay platos registrados</h2><p>Cuando añadas platos, aparecerán aquí con su país y sus películas.</p><a class="button button-primary" href="{% url 'admin:index' %}">Añadir desde administración</a></div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

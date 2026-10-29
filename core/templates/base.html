@@ -1,24 +1,52 @@
-<!DOCTYPE html>
+{% load static %}
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Bocado de Culto</title>
-	{% load static %}
-	<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bocado de Culto: platos, países y películas que unen cine y gastronomía.">
+    <title>{% block title %}Bocado de Culto{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="{% url 'portada' %}">Inicio</a> | 
-            <a href="{% url 'lista_platos' %}">Platos</a>
-            <a href="{% url 'lista_paises' %}">Países</a> |
-            <a href="{% url 'lista_peliculas' %}">Películas</a>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header">
+        <div class="film-banner">
+            <a class="brand" href="{% url 'portada' %}" aria-label="Bocado de Culto, ir al inicio">
+                <img class="header-logo" src="{% static 'images/logo.png' %}" alt="Bocado de Culto">
+            </a>
+        </div>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <div class="nav-inner">
+                <a class="nav-link{% if request.resolver_match.url_name == 'portada' %} is-active{% endif %}"
+                   href="{% url 'portada' %}"{% if request.resolver_match.url_name == 'portada' %} aria-current="page"{% endif %}>Inicio</a>
+                <a class="nav-link{% if request.resolver_match.url_name == 'lista_platos' or request.resolver_match.url_name == 'detalle_plato' %} is-active{% endif %}"
+                   href="{% url 'lista_platos' %}"{% if request.resolver_match.url_name == 'lista_platos' or request.resolver_match.url_name == 'detalle_plato' %} aria-current="page"{% endif %}>Platos</a>
+                <a class="nav-link{% if request.resolver_match.url_name == 'lista_paises' or request.resolver_match.url_name == 'detalle_pais' %} is-active{% endif %}"
+                   href="{% url 'lista_paises' %}"{% if request.resolver_match.url_name == 'lista_paises' or request.resolver_match.url_name == 'detalle_pais' %} aria-current="page"{% endif %}>Países</a>
+                <a class="nav-link{% if request.resolver_match.url_name == 'lista_peliculas' or request.resolver_match.url_name == 'detalle_pelicula' %} is-active{% endif %}"
+                   href="{% url 'lista_peliculas' %}"{% if request.resolver_match.url_name == 'lista_peliculas' or request.resolver_match.url_name == 'detalle_pelicula' %} aria-current="page"{% endif %}>Películas</a>
+                <a class="nav-link nav-link-admin" href="{% url 'admin:index' %}">Administración ↗</a>
+            </div>
         </nav>
     </header>
-    <hr>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+
+    <div class="page-shell">
+        <main id="contenido" class="site-main">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <img class="footer-camera" src="{% static 'images/decocamara.png' %}" alt="" aria-hidden="true">
+        <div class="footer-content">
+            <p class="footer-brand">Bocado de Culto</p>
+            <p>Cine para ver. Platos para recordar.</p>
+            <p class="footer-small">Proyecto web · Cine y gastronomía</p>
+        </div>
+    </footer>
 </body>
 </html>

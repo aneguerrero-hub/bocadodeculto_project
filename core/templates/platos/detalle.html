@@ -1,27 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ plato.nombre }} | Bocado de Culto{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/platos.css' %}">{% endblock %}
 
 {% block content %}
-<h1>{{ plato.nombre }}</h1>
-<p><strong>Descripción:</strong> {{ plato.descripcion }}</p>
-<p>
-    <strong>País de origen:</strong>
-    <a href="{% url 'detalle_pais' plato.pais_origen.id %}">
-        {{ plato.pais_origen.nombre }}
-    </a>
-</p>
+<nav class="breadcrumbs" aria-label="Ruta de navegación"><a href="{% url 'portada' %}">Inicio</a><span aria-hidden="true">/</span><a href="{% url 'lista_platos' %}">Platos</a><span aria-hidden="true">/</span><span aria-current="page">{{ plato.nombre }}</span></nav>
+<article class="detail-page dish-detail">
+    <header class="detail-heading">
+        <p class="eyebrow">Ficha del plato</p>
+        <h1>{{ plato.nombre }}</h1>
+        <div class="detail-tags"><a class="tag tag-link" href="{% url 'detalle_pais' plato.pais_origen.id %}">{{ plato.pais_origen.nombre }}</a><span class="tag tag-light">{{ plato.num_peliculas }} película{{ plato.num_peliculas|pluralize:"s" }}</span></div>
+    </header>
 
-<h3>Películas donde aparece este plato:</h3>
-<ul>
-    {% for pelicula in plato.peliculas.all %}
-        <li>
-            <a href="{% url 'detalle_pelicula' pelicula.id %}">
-             {{ pelicula.titulo }}
-            </a>
-        </li>
-    {% empty %}
-        <li>Este plato no está asociado a ninguna película todavía.</li>
-    {% endfor %}
-</ul>
+    <section class="detail-panel" aria-labelledby="dish-info-title">
+        <h2 id="dish-info-title">Sobre este plato</h2>
+        <p class="detail-description">{{ plato.descripcion }}</p>
+        <dl class="detail-facts">
+            <div><dt>País de origen</dt><dd><a href="{% url 'detalle_pais' plato.pais_origen.id %}">{{ plato.pais_origen.nombre }}</a></dd></div>
+            <div><dt>Precio registrado</dt><dd>{{ plato.precio }}</dd></div>
+        </dl>
+    </section>
 
-<a href="{% url 'lista_platos' %}">← Volver al listado de platos</a>
+    <section class="related-section" aria-labelledby="dish-films-title">
+        <div class="section-heading"><div><p class="eyebrow">Conexiones en pantalla</p><h2 id="dish-films-title">Películas donde aparece</h2></div></div>
+        <div class="related-list">
+            {% for pelicula in plato.peliculas.all %}
+                <article class="related-item">
+                    <div><h3><a href="{% url 'detalle_pelicula' pelicula.id %}">{{ pelicula.titulo }}</a></h3><p>{{ pelicula.director }} · <a href="{% url 'detalle_pais' pelicula.pais.id %}">{{ pelicula.pais.nombre }}</a></p></div>
+                    <a class="round-link" href="{% url 'detalle_pelicula' pelicula.id %}" aria-label="Ver {{ pelicula.titulo }}">↗</a>
+                </article>
+            {% empty %}
+                <p class="empty-inline">Este plato todavía no está asociado a ninguna película.</p>
+            {% endfor %}
+        </div>
+    </section>
+    <a class="back-link" href="{% url 'lista_platos' %}">← Volver a todos los platos</a>
+</article>
 {% endblock %}

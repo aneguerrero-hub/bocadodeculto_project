@@ -1,16 +1,67 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio | Bocado de Culto{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/portada.css' %}">{% endblock %}
 
 {% block content %}
-<h1>Portada - Platos Destacados por País</h1>
-<div class="contenedor-platos">
-    {% for plato in platos_destacados %}
-        <div class="tarjeta-plato">
-            <h2>{{ plato.nombre }}</h2>
-            <p><strong>País:</strong> {{ plato.pais_origen.nombre }}</p>
-            <a href="{% url 'detalle_plato' plato.id %}">Ver detalle</a>
+<section class="home-hero" aria-labelledby="hero-title">
+    <p class="eyebrow">Un menú de película</p>
+    <h1 id="hero-title">Cuando el cine se sienta a la mesa</h1>
+    <p class="hero-copy">Descubre los platos que dejan huella en la gran pantalla, conoce su país de origen y sigue su historia de película en película.</p>
+    <div class="hero-actions">
+        <a class="button button-primary" href="{% url 'lista_platos' %}">Explorar platos <span aria-hidden="true">→</span></a>
+        <a class="button button-secondary" href="{% url 'lista_peliculas' %}">Ver películas</a>
+    </div>
+    <div class="site-stats" aria-label="Contenido del catálogo">
+        <div class="stat-item"><strong>{{ total_platos }}</strong><span>platos</span></div>
+        <div class="stat-item"><strong>{{ total_paises }}</strong><span>países</span></div>
+        <div class="stat-item"><strong>{{ total_peliculas }}</strong><span>películas</span></div>
+    </div>
+</section>
+
+<section class="featured-section" aria-labelledby="featured-title">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">La selección de la casa</p>
+            <h2 id="featured-title">Un bocado por país</h2>
         </div>
-    {% empty %}
-        <p>No hay platos registrados actualmente.</p>
-    {% endfor %}
-</div>
+        <p>Un plato destacado de cada país, priorizando los que aparecen en más películas.</p>
+    </div>
+
+    <div class="card-grid featured-grid">
+        {% for plato in platos_destacados %}
+            <article class="info-card featured-card">
+                <div class="card-topline">
+                    <span class="tag">{{ plato.pais_origen.nombre }}</span>
+                    <span class="film-count">{{ plato.num_peliculas }} película{{ plato.num_peliculas|pluralize:"s" }}</span>
+                </div>
+                <h3><a href="{% url 'detalle_plato' plato.id %}">{{ plato.nombre }}</a></h3>
+                <p>{{ plato.descripcion|truncatewords:24 }}</p>
+                <div class="card-footer">
+                    <span class="price">Precio: {{ plato.precio }}</span>
+                    <a class="text-link" href="{% url 'detalle_plato' plato.id %}">Descubrir plato <span aria-hidden="true">↗</span></a>
+                </div>
+            </article>
+        {% empty %}
+            <div class="empty-state">
+                <h3>La carta aún está vacía</h3>
+                <p>Registra países y platos desde el panel de administración para empezar a descubrir historias.</p>
+                <a class="button button-primary" href="{% url 'admin:index' %}">Abrir administración</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="home-discover" aria-labelledby="discover-title">
+    <div>
+        <p class="eyebrow">Sigue explorando</p>
+        <h2 id="discover-title">Cada plato cuenta una historia</h2>
+        <p>Entra en las fichas para conocer sus películas, sus países y las conexiones que unen cada mesa con la gran pantalla.</p>
+    </div>
+    <div class="discover-links">
+        <a href="{% url 'lista_paises' %}">Viajar por países <span aria-hidden="true">→</span></a>
+        <a href="{% url 'lista_peliculas' %}">Buscar por película <span aria-hidden="true">→</span></a>
+    </div>
+</section>
 {% endblock %}

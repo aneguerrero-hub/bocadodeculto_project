@@ -1,26 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Películas | Bocado de Culto{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/pelis.css' %}">{% endblock %}
 
 {% block content %}
+<header class="page-heading">
+    <p class="eyebrow">La filmoteca del sabor</p>
+    <h1>Películas</h1>
+    <p>Consulta las historias, sus directores, su país y los platos que aparecen en ellas.</p>
+    <span class="heading-count">{{ peliculas|length }} película{{ peliculas|length|pluralize:"s" }} en cartelera</span>
+</header>
 
-<h1>Listado de películas</h1>
-
-<ul>
+<div class="card-grid movie-grid">
     {% for pelicula in peliculas %}
-        <li>
-            <strong>
-                <a href="{% url 'detalle_pelicula' pelicula.id %}">
-                    {{ pelicula.titulo }}
-                </a>
-            </strong>
-            — Director: {{ pelicula.director }}
-            — País:
-            <a href="{% url 'detalle_pais' pelicula.pais.id %}">
-                {{ pelicula.pais.nombre }}
-            </a>
-        </li>
+        <article class="info-card movie-card">
+            <div class="movie-card-top"><span class="movie-reel" aria-hidden="true">✦</span><a class="tag tag-link" href="{% url 'detalle_pais' pelicula.pais.id %}">{{ pelicula.pais.nombre }}</a></div>
+            <h2><a href="{% url 'detalle_pelicula' pelicula.id %}">{{ pelicula.titulo }}</a></h2>
+            <p class="director-line">Dirección: {{ pelicula.director }}</p>
+            <p>{{ pelicula.sinopsis|truncatewords:30 }}</p>
+            <div class="card-footer"><span class="film-count">{{ pelicula.num_platos }} plato{{ pelicula.num_platos|pluralize:"s" }} asociado{{ pelicula.num_platos|pluralize:"s" }}</span><a class="text-link" href="{% url 'detalle_pelicula' pelicula.id %}">Ver película <span aria-hidden="true">↗</span></a></div>
+        </article>
     {% empty %}
-        <li>No hay películas registradas.</li>
+        <div class="empty-state"><h2>No hay películas registradas</h2><p>Añade películas desde administración y asocia sus platos para completar las fichas.</p><a class="button button-primary" href="{% url 'admin:index' %}">Añadir una película</a></div>
     {% endfor %}
-</ul>
-
+</div>
 {% endblock %}
