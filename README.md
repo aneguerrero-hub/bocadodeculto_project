@@ -2,6 +2,11 @@
 
 Proyecto web colaborativo en Django para explorar la relación entre platos, países y películas.
 
+## Requisitos
+
+- Python 3.10 o superior compatible con la versión de Django instalada.
+- Django (la versión utilizada en el entorno de desarrollo del proyecto es 6.1.2).
+
 ## Puesta en marcha
 
 Desde la carpeta que contiene `manage.py`:
@@ -20,6 +25,8 @@ Después, abre `http://127.0.0.1:8000/`. El panel de administración está en `h
 - **Países** (`/paises/`, `/paises/<id>/`): catálogo y ficha de país con sus platos y películas.
 - **Películas** (`/peliculas/`, `/peliculas/<id>/`): catálogo y ficha de película con director, sinopsis, país y platos asociados.
 - **Administración** (`/admin/`): gestión de los datos mediante el panel nativo de Django.
+
+El catálogo ampliado incluye 14 países, 65 platos y 41 películas, con relaciones navegables entre ellos. Si ya tienes una base de datos previa, puedes incorporar o actualizar estos datos sin borrar el usuario administrador con `python manage.py cargar_catalogo`.
 
 Los datos de ejemplo se incluyen en `core/fixtures/demo_data.json` para poder reconstruir el catálogo en una base de datos nueva. La base de datos SQLite incluida en este paquete ya contiene esos datos, así que no cargues la fixture encima de ella.
 
