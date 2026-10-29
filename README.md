@@ -7,8 +7,8 @@ Proyecto web colaborativo en Django para explorar la relación entre platos, pa�
 Desde la carpeta que contiene `manage.py`:
 
 ```bash
-python manage.py migrate
-python manage.py runserver
+py manage.py migrate
+py manage.py runserver
 ```
 
 Después, abre `http://127.0.0.1:8000/`. El panel de administración está en `http://127.0.0.1:8000/admin/`.
