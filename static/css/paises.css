@@ -1,0 +1,16 @@
+/* Sección de países */
+.country-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.country-card { min-height: 220px; }
+.country-mark { display: grid; width: 42px; height: 42px; place-items: center; color: var(--wine); background: #f5e2ca; border: 1px solid #ebd0ad; border-radius: 50%; font-size: 1.25rem; }
+.country-card h2 { margin: 1rem 0 1.1rem; font-size: 1.65rem; }
+.country-card h2 a { text-decoration: none; }
+.country-counts { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; margin-bottom: 1.3rem; color: var(--muted); font-size: 0.8rem; }
+.country-counts strong { color: var(--wine); font-size: 1rem; }
+.country-card .text-link { margin-top: auto; }
+.country-detail-heading { border-left: 5px solid var(--gold); }
+.country-dishes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.related-card { min-height: 195px; }
+.related-card h3 { margin-top: 1rem; }
+.related-card .text-link { margin-top: auto; }
+@media (max-width: 900px) { .country-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .country-grid, .country-dishes-grid { grid-template-columns: 1fr; } }

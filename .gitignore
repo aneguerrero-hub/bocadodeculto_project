@@ -1,4 +1,15 @@
+# Python environments
+.venv/
+venv/
 env1/
-*.pyc
+
+# Python bytecode and caches
+*.py[cod]
 __pycache__/
+
+# Local databases and collected static files
 db.sqlite3
+staticfiles/
+
+# Test/tooling caches
+.pytest_cache/
