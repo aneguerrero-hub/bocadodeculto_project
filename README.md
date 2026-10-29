@@ -7,13 +7,7 @@ Proyecto web colaborativo en Django para explorar la relación entre platos, pa�
 Desde la carpeta que contiene `manage.py`:
 
 ```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS / Linux: source .venv/bin/activate
-python -m pip install -r requirements.txt
 python manage.py migrate
-# Solo si la base de datos está vacía y quieres cargar los datos de ejemplo:
-python manage.py loaddata core/fixtures/demo_data.json
 python manage.py runserver
 ```
 
