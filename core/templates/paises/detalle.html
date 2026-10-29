@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ pais.nombre }}</h1>
+
+<h2>Platos de este país</h2>
+
+<ul>
+    {% for plato in pais.platos.all %}
+        <li>
+            <a href="{% url 'detalle_plato' plato.id %}">
+                {{ plato.nombre }}
+            </a>
+            <p>{{ plato.descripcion }}</p>
+        </li>
+    {% empty %}
+        <li>No hay platos registrados para este país.</li>
+    {% endfor %}
+</ul>
+<h2>Películas de este país</h2>
+
+<ul>
+    {% for pelicula in pais.peliculas.all %}
+        <li>
+            <a href="{% url 'detalle_pelicula' pelicula.id %}">
+                {{ pelicula.titulo }}
+            </a>
+        </li>
+    {% empty %}
+        <li>No hay películas registradas para este país.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'lista_paises' %}">Volver a países</a>
+
+{% endblock %}

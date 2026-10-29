@@ -3,12 +3,21 @@
 {% block content %}
 <h1>{{ plato.nombre }}</h1>
 <p><strong>Descripción:</strong> {{ plato.descripcion }}</p>
-<p><strong>País de origen:</strong> {{ plato.pais_origen.nombre }}</p>
+<p>
+    <strong>País de origen:</strong>
+    <a href="{% url 'detalle_pais' plato.pais_origen.id %}">
+        {{ plato.pais_origen.nombre }}
+    </a>
+</p>
 
 <h3>Películas donde aparece este plato:</h3>
 <ul>
     {% for pelicula in plato.peliculas.all %}
-        <li>{{ pelicula.titulo }} ({% if pelicula.anio %}{{ pelicula.anio }}{% else %}Año N/D{% endif %})</li>
+        <li>
+            <a href="{% url 'detalle_pelicula' pelicula.id %}">
+             {{ pelicula.titulo }}
+            </a>
+        </li>
     {% empty %}
         <li>Este plato no está asociado a ninguna película todavía.</li>
     {% endfor %}

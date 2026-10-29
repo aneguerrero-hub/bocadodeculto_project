@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Listado de países</h1>
+
+<ul>
+    {% for pais in paises %}
+        <li>
+            <a href="{% url 'detalle_pais' pais.id %}">
+                {{ pais.nombre }}
+            </a>
+        </li>
+    {% empty %}
+        <li>No hay países registrados.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
