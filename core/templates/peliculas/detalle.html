@@ -4,23 +4,26 @@
 {% block otros_css %}
 <link rel="stylesheet" href="{% static 'css/pelis.css' %}">
 <link rel="stylesheet" href="{% static 'css/paises.css' %}">
-
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block contenido %}
-	<br>
-	<br>
-	<br>
-	<a href="{% url 'lista_peliculas' %}#videoclub" class="volver-pasaporte">
-	    PELÍCULAS
-	</a>
-	<span class="separador-ruta"> / </span>
-	<span class="pais-actual">
-	    {{ pelicula.titulo }}
-	</span>
 
-	<section class="pelicula-detalle">
+<br>
+<br>
+<br>
+
+<a href="{% url 'lista_peliculas' %}#videoclub" class="volver-pasaporte">
+    PELÍCULAS
+</a>
+
+<span class="separador-ruta"> / </span>
+
+<span class="pais-actual">
+    {{ pelicula.titulo }}
+</span>
+
+<section class="pelicula-detalle">
 
     <div class="detalle-portada">
         <div class="detalle-portada-marco">
@@ -29,15 +32,13 @@
         </div>
     </div>
 
-    <!--INFORMACIÓN-->
     <div class="detalle-informacion">
 
         <header class="detalle-header">
             <h1>{{ pelicula.titulo }}</h1>
         </header>
 
-        <!--FICHA TÉCNICA-->
-        <section class="detalle-ficha">
+        <div class="detalle-ficha">
 
             <div class="detalle-dato">
                 <span>DIRECTOR</span>
@@ -55,20 +56,18 @@
                 </p>
             </div>
 
+        </div>
+
+        <section class="detalle-descripcion">
+            <h2>Sinopsis</h2>
+
+            {% if pelicula.sinopsis %}
+                <p>{{ pelicula.sinopsis }}</p>
+            {% else %}
+                <p>Sin sinopsis disponible.</p>
+            {% endif %}
         </section>
 
-        <!--DESCRIPCIÓN-->
-		<section class="detalle-descripcion">
-		    <h2>Sinopsis</h2>
-
-			{% if pelicula.sinopsis %}
-			    <p>{{ pelicula.sinopsis }}</p>
-			{% else %}
-			    <p>Sin sinopsis disponible.</p>
-		    {% endif %}
-		</section>
-
-        <!--PLATOS RELACIONADOS-->
         <section class="detalle-gastronomia">
             <h2>Platos de la película</h2>
 

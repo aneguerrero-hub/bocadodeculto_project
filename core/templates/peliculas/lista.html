@@ -24,7 +24,9 @@
 </div>
 
 <!-- SECCION 2 : ESTANTERÍA DE PELÍCULAS -->
+<h1 class="rellenoheader">header</h1>
 <section class="videoclub-estanteria">
+	
     <div class="peliculas-estanteria">
 		{% for pelicula in peliculas %}
 		    <a href="{% url 'detalle_pelicula' pelicula.id %}"

@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load static %}
 
@@ -9,6 +8,7 @@
 {% endblock %}
 
 {% block contenido %}
+
 <br>
 <br>
 <br>
@@ -16,7 +16,9 @@
 <a href="{% url 'lista_platos' %}#recetario" class="volver-pasaporte">
     PLATOS
 </a>
+
 <span class="separador-ruta"> / </span>
+
 <span class="pais-actual">{{ plato.nombre }}</span>
 
 <section class="plato-detalle">
@@ -37,7 +39,7 @@
             <h1>{{ plato.nombre }}</h1>
         </header>
 
-        <section class="plato-ficha">
+        <div class="plato-ficha">
             <div class="plato-dato">
                 <span>PAÍS DE ORIGEN</span>
                 <p>
@@ -46,10 +48,11 @@
                     </a>
                 </p>
             </div>
-        </section>
+        </div>
 
         <section class="plato-descripcion">
             <h2>Sobre el plato</h2>
+
             {% if plato.descripcion %}
                 <p>{{ plato.descripcion }}</p>
             {% else %}
@@ -59,6 +62,7 @@
 
         <section class="plato-cine">
             <h2>Películas en las que aparece</h2>
+
             <div class="plato-peliculas">
                 {% for pelicula in plato.peliculas.all %}
                     <a href="{% url 'detalle_pelicula' pelicula.id %}" class="plato-pelicula">
@@ -73,5 +77,7 @@
         </section>
 
     </div>
+
 </section>
+
 {% endblock %}
