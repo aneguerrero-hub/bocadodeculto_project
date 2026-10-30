@@ -1,27 +1,68 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block otros_css %}
+<link rel="stylesheet" href="{% static 'css/paises.css' %}">
+{% endblock %}
 
-{% block title %}Países | Bocado de Culto{% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{% static 'css/paises.css' %}">{% endblock %}
+{% block contenido %}
+<main class="pasaporte-contenedor">
+	
+    <section class="pasaporte">
+		<div class="borde-estrellas borde-superior">
+		    {% for i in "12345678901234567890123456789012345678901234567890" %}
+		        <span>★</span>
+		    {% endfor %}
+		</div>
+		<div class="borde-estrellas borde-inferior">
+		    {% for i in "12345678901234567890123456789012345678901234567890" %}
+		        <span>★</span>
+		    {% endfor %}
+		</div>
+		<div class="borde-estrellas borde-izquierdo">
+		    {% for i in "12345678901234567890123456789012345678901234567890" %}
+		        <span>★</span>
+		    {% endfor %}
+		</div>
+		<div class="borde-estrellas borde-derecho">
+		    {% for i in "12345678901234567890123456789012345678901234567890" %}
+		        <span>★</span>
+		    {% endfor %}
+		</div>
+		
+		<!--encabezado-->
+        <header class="pasaporte-header">
+            <div class="pasaporte-titulo">
+				<h1>
+				    <span>Pasaporte</span>
+				    <img src="{% static 'images/sello.png' %}"
+				         alt="Cámara"
+				         class="icono-sello">
+				    <span>Gastronómico</span>
+				</h1>
+            </div>
+        </header>
+		<!----------------------------------------------->
 
-{% block content %}
-<header class="page-heading">
-    <p class="eyebrow">Un mundo de sabores</p>
-    <h1>Países</h1>
-    <p>Explora cada origen y descubre los platos y películas que tenemos asociados.</p>
-    <span class="heading-count">{{ paises|length }} país{{ paises|length|pluralize:"es" }} en el mapa</span>
-</header>
+        <div class="pasaporte-sellos">
+            <span class="unicode-avion">✈︎</span>
+            <div>
+                <h2>Mis destinos</h2>
+                <p>Selecciona un sello para comenzar tu viaje.</p>
+            </div>
+            <span class="num-sellos">14 SELLOS</span>
+        </div>
 
-<div class="card-grid country-grid">
-    {% for pais in paises %}
-        <article class="info-card country-card">
-            <div class="country-mark" aria-hidden="true">✦</div>
-            <h2><a href="{% url 'detalle_pais' pais.id %}">{{ pais.nombre }}</a></h2>
-            <div class="country-counts"><span><strong>{{ pais.num_platos }}</strong> plato{{ pais.num_platos|pluralize:"s" }}</span><span><strong>{{ pais.num_peliculas }}</strong> película{{ pais.num_peliculas|pluralize:"s" }}</span></div>
-            <a class="text-link" href="{% url 'detalle_pais' pais.id %}">Descubrir país <span aria-hidden="true">↗</span></a>
-        </article>
-    {% empty %}
-        <div class="empty-state"><h2>No hay países registrados</h2><p>Añade países desde administración para organizar los platos por procedencia.</p><a class="button button-primary" href="{% url 'admin:index' %}">Añadir un país</a></div>
-    {% endfor %}
-</div>
+        <section class="sellos-grid" id="paises">
+			{% for pais in paises %}
+				<a class="sello-pais" href="{% url 'detalle_pais' pais.id %}">
+					<img class="imagen-sello"
+			        src="{% static 'images/sellos/sello-' %}{{ pais.nombre|slugify }}.jpg"
+			        alt="Sello de {{ pais.nombre }}">
+					<h3>{{ pais.nombre }}</h3>
+			   </a>
+			{% endfor %}
+        </section>
+		
+    </section>
+</main>
 {% endblock %}

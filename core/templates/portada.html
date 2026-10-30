@@ -1,67 +1,168 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Inicio | Bocado de Culto{% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{% static 'css/portada.css' %}">{% endblock %}
+{% block otros_css %}
+<link rel="stylesheet" href="{% static 'css/portada.css' %}">
+{% endblock %}
 
-{% block content %}
-<section class="home-hero" aria-labelledby="hero-title">
-    <p class="eyebrow">Un menú de película</p>
-    <h1 id="hero-title">Cuando el cine se sienta a la mesa</h1>
-    <p class="hero-copy">Descubre los platos que dejan huella en la gran pantalla, conoce su país de origen y sigue su historia de película en película.</p>
-    <div class="hero-actions">
-        <a class="button button-primary" href="{% url 'lista_platos' %}">Explorar platos <span aria-hidden="true">→</span></a>
-        <a class="button button-secondary" href="{% url 'lista_peliculas' %}">Ver películas</a>
+{% block contenido %}
+
+<!--SECCION 1 : PLATOS ESTILO MENU-->
+<section class="platos-contenedor">
+    <div class="platos-encabezado">
+        <div>
+            <h1>
+                <span>Del cine</span>
+                <img src="{% static 'images/cubiertoseparador.png' %}"
+                     alt="Cámara"
+                     class="icono-cubiertos">
+                <span>al menú</span>
+            </h1>
+        </div>
+        <p>Nuestros platos protagonistas</p>
     </div>
-    <div class="site-stats" aria-label="Contenido del catálogo">
-        <div class="stat-item"><strong>{{ total_platos }}</strong><span>platos</span></div>
-        <div class="stat-item"><strong>{{ total_paises }}</strong><span>países</span></div>
-        <div class="stat-item"><strong>{{ total_peliculas }}</strong><span>películas</span></div>
+
+    <div class="carrusel">
+        <input type="radio" name="plato" id="plato1" checked>
+        <input type="radio" name="plato" id="plato2">
+        <input type="radio" name="plato" id="plato3">
+
+		<!--grid platos-->
+        <div class="platos-menu-grid">
+            <div class="plato-menu-card card1">
+                <img src="{% static 'images/milkshake.png' %}" alt="Batido">
+            </div>
+
+            <div class="plato-menu-card card2">
+                <img src="{% static 'images/paella.png' %}" alt="Paella">
+            </div>
+
+            <div class="plato-menu-card card3">
+                <img src="{% static 'images/ramen.png' %}" alt="Ramen">
+            </div>
+        </div>
+		
+		<!--flechas-->
+		<div class="flechas">
+		    <!-- PLATO 1 -->
+		    <label for="plato3"
+		           class="flecha flecha-anterior flecha-p1">
+		        &#9756;
+		    </label>
+
+		    <label for="plato2"
+		           class="flecha flecha-siguiente flecha-p1">
+		        &#9758; <!--entidad html de unicode -->
+		    </label>
+
+		    <!-- PLATO 2 -->
+		    <label for="plato1"
+		           class="flecha flecha-anterior flecha-p2">
+				&#9756;		        
+		    </label>
+
+		    <label for="plato3"
+		           class="flecha flecha-siguiente flecha-p2">
+				&#9758;
+		    </label>
+
+		    <!-- PLATO 3 -->
+		    <label for="plato2"
+		           class="flecha flecha-anterior flecha-p3">
+				&#9756;
+		    </label>
+
+		    <label for="plato1"
+		           class="flecha flecha-siguiente flecha-p3">
+				&#9758;
+		    </label>
+		</div>
+
+    </div>
+</section>
+<!------------------------------------------------------------>
+
+<!--SECCION 2 : MAPA CON PLATOS DESTACADOS-->
+<section class="mapa-contenedor">
+    <div class="mapa-encabezado">
+        <div>
+            <h1>
+                <span>Un mundo</span>
+                <img src="{% static 'images/camara.png' %}"
+                     alt="Cámara"
+                     class="icono-camara">
+                <span>de película</span>
+            </h1>
+        </div>
+        <p>Pasa el cursor por un país para descubrir sus platos destacados en el cine</p>
     </div>
 </section>
 
-<section class="featured-section" aria-labelledby="featured-title">
-    <div class="section-heading">
-        <div>
-            <p class="eyebrow">La selección de la casa</p>
-            <h2 id="featured-title">Un bocado por país</h2>
-        </div>
-        <p>Un plato destacado de cada país, priorizando los que aparecen en más películas.</p>
-    </div>
+    <div class="mapa">
+        <img class="mapa-imagen" src="{% static 'images/mapamundo.jpg' %}" alt="Mapa del mundo con países interactivos">
 
-    <div class="card-grid featured-grid">
+		<!--marcadores, uno por país-->
         {% for plato in platos_destacados %}
-            <article class="info-card featured-card">
-                <div class="card-topline">
-                    <span class="tag">{{ plato.pais_origen.nombre }}</span>
-                    <span class="film-count">{{ plato.num_peliculas }} película{{ plato.num_peliculas|pluralize:"s" }}</span>
+            {% with pais=plato.pais_origen.nombre|lower %}
+                {% if pais == "japón" or pais == "japon" %}
+                    <div class="mapa-marcador marcador-japon">
+				{% elif pais == "corea del sur" %}
+				   <div class="mapa-marcador marcador-corea">
+				{% elif pais == "taiwan" or pais == "taiwán" %}
+					<div class="mapa-marcador marcador-taiwan">
+                {% elif pais == "italia" %}
+                    <div class="mapa-marcador marcador-italia">
+                {% elif pais == "españa" or pais == "espana" %}
+                    <div class="mapa-marcador marcador-espana">
+                {% elif pais == "francia" %}
+                    <div class="mapa-marcador marcador-francia">
+                {% elif pais == "reino unido" %}
+                    <div class="mapa-marcador marcador-reino-unido">
+                {% elif pais == "estados unidos" %}
+                    <div class="mapa-marcador marcador-eeuu">
+                {% elif pais == "méxico" or pais == "mexico" %}
+                    <div class="mapa-marcador marcador-mexico">
+                {% elif pais == "china" %}
+                    <div class="mapa-marcador marcador-china">
+                {% elif pais == "india" %}
+                    <div class="mapa-marcador marcador-india">
+                {% elif pais == "tailandia" %}
+                    <div class="mapa-marcador marcador-tailandia">
+                {% elif pais == "marruecos" %}
+                    <div class="mapa-marcador marcador-marruecos">
+                {% elif pais == "grecia" %}
+                    <div class="mapa-marcador marcador-grecia">
+				{% elif pais == "cuba" %}
+					<div class="mapa-marcador marcador-cuba">
+                {% else %}
+                {% endif %}
+
+                    <button class="mapa-etiqueta" type="button">
+                        {{ plato.pais_origen.nombre }}
+                    </button>
+
+                    <div class="mapa-tarjeta">
+						<!--display del pais de plato-->
+                        <span class="mapa-pais">
+                            {{ plato.pais_origen.nombre }}
+                        </span>
+						<!--display de nom del plato-->	
+                        <h2>
+                            {{ plato.nombre }}
+                        </h2>
+						<!--display de desc-->
+                        <p>
+                            {{ plato.descripcion|truncatewords:20 }}
+                        </p>
+
+                        <a href="{% url 'detalle_plato' plato.id %}">
+                            Ver plato →
+                        </a>
+                    </div>
                 </div>
-                <h3><a href="{% url 'detalle_plato' plato.id %}">{{ plato.nombre }}</a></h3>
-                <p>{{ plato.descripcion|truncatewords:24 }}</p>
-                <div class="card-footer">
-                    <span class="price">Precio: {{ plato.precio }}</span>
-                    <a class="text-link" href="{% url 'detalle_plato' plato.id %}">Descubrir plato <span aria-hidden="true">↗</span></a>
-                </div>
-            </article>
-        {% empty %}
-            <div class="empty-state">
-                <h3>La carta aún está vacía</h3>
-                <p>Registra países y platos desde el panel de administración para empezar a descubrir historias.</p>
-                <a class="button button-primary" href="{% url 'admin:index' %}">Abrir administración</a>
-            </div>
+            {% endwith %}
         {% endfor %}
     </div>
 </section>
 
-<section class="home-discover" aria-labelledby="discover-title">
-    <div>
-        <p class="eyebrow">Sigue explorando</p>
-        <h2 id="discover-title">Cada plato cuenta una historia</h2>
-        <p>Entra en las fichas para conocer sus películas, sus países y las conexiones que unen cada mesa con la gran pantalla.</p>
-    </div>
-    <div class="discover-links">
-        <a href="{% url 'lista_paises' %}">Viajar por países <span aria-hidden="true">→</span></a>
-        <a href="{% url 'lista_peliculas' %}">Buscar por película <span aria-hidden="true">→</span></a>
-    </div>
-</section>
 {% endblock %}

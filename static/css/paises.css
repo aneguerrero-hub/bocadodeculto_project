@@ -1,16 +1,772 @@
-/* Sección de países */
-.country-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.country-card { min-height: 220px; }
-.country-mark { display: grid; width: 42px; height: 42px; place-items: center; color: var(--wine); background: #f5e2ca; border: 1px solid #ebd0ad; border-radius: 50%; font-size: 1.25rem; }
-.country-card h2 { margin: 1rem 0 1.1rem; font-size: 1.65rem; }
-.country-card h2 a { text-decoration: none; }
-.country-counts { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; margin-bottom: 1.3rem; color: var(--muted); font-size: 0.8rem; }
-.country-counts strong { color: var(--wine); font-size: 1rem; }
-.country-card .text-link { margin-top: auto; }
-.country-detail-heading { border-left: 5px solid var(--gold); }
-.country-dishes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.related-card { min-height: 195px; }
-.related-card h3 { margin-top: 1rem; }
-.related-card .text-link { margin-top: auto; }
-@media (max-width: 900px) { .country-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .country-grid, .country-dishes-grid { grid-template-columns: 1fr; } }
+/*************/
+/*PASAPORTE*/
+/*************/
+
+.pasaporte-contenedor {
+
+    padding: 65px 6%;
+
+}
+
+.pasaporte {
+
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 55px;
+
+    background-color: var(--crema);
+
+    background-image: url("../images/textura-menu.jpg");
+
+    background-repeat: repeat;
+
+    background-size: 300px 300px;
+
+    background-blend-mode: multiply;
+
+    border: none;
+
+    outline: 4px solid var(--rojoCL);
+
+    box-shadow: 0 12px 35px rgba(61, 42, 26, 0.18);
+
+    position: relative;
+
+}
+
+
+/*Línea interior*/
+
+.pasaporte::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 25px;
+
+    border: 3px solid var(--rojo);
+
+    pointer-events: none;
+
+    z-index: 4;
+
+}
+
+
+/*MARCO DE ESTRELLAS*/
+
+.borde-estrellas {
+
+    position: absolute;
+
+    display: flex;
+
+    color: var(--azul);
+
+    pointer-events: none;
+
+    z-index: 5;
+
+}
+
+.borde-estrellas span {
+
+    font-size: 12px;
+
+    line-height: 1;
+
+}
+
+.borde-superior,
+
+.borde-inferior {
+
+    left: 5px;
+
+    right: 5px;
+
+    justify-content: space-between;
+
+    flex-direction: row;
+
+}
+
+.borde-superior {
+
+    top: 5px;
+
+}
+
+.borde-inferior {
+
+    bottom: 5px;
+
+}
+
+.borde-izquierdo,
+
+.borde-derecho {
+
+    top: 5px;
+
+    bottom: 5px;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+}
+
+.borde-izquierdo {
+
+    left: 5px;
+
+}
+
+.borde-derecho {
+
+    right: 5px;
+
+}
+
+
+/****************************/
+/*CABECERA*/
+/****************************/
+
+/*titulo*/
+
+.pasaporte-header {
+
+    border-bottom: 3px dotted var(--marron);
+
+    font-family: "tomato";
+
+}
+
+.pasaporte-titulo {
+
+    text-align: center;
+
+    padding: 35px 10px;
+
+    padding-bottom: 20px;
+
+}
+
+.pasaporte-titulo h1 {
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    font-family: "tomato";
+
+    font-size: 3em;
+
+    font-weight: normal;
+
+    color: var(--rojoCL);
+
+    text-align: center;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    letter-spacing: 2px;
+
+    line-height: 1.1;
+
+    text-shadow: 2px 2px 0px rgba(104, 54, 35, 0.15);
+
+}
+
+.icono-sello {
+
+    width: 150px;
+
+    height: 100px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    margin: 0 -15px;
+
+}
+
+.pasaporte-titulo h1 span {
+
+    color: var(--rojoCL);
+
+}
+
+.pasaporte-titulo > p:last-child {
+
+    color: #75634f;
+
+    font-family: "wavery";
+
+    text-transform: uppercase;
+
+    font-size: 20px;
+
+}
+
+
+/****************************/
+/*ZONA DE SELLOS*/
+/****************************/
+
+.pasaporte-sellos {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin: 35px 0 25px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 3px dotted var(--marron);
+
+}
+
+.unicode-avion {
+
+    color: var(--azul);
+
+    font-size: 30px;
+
+}
+
+.pasaporte-sellos h2 {
+
+    margin: 0;
+
+    color: var(--negro);
+
+    font-family: "wavery", serif;
+
+    font-size: 27px;
+
+    text-transform: uppercase;
+
+    font-weight: normal;
+
+}
+
+.pasaporte-sellos p {
+
+    margin: 5px 0 0;
+
+    color: var(--marron);
+
+    font-family: "wavery";
+
+    text-transform: uppercase;
+
+    font-size: 20px;
+
+}
+
+.num-sellos {
+
+    margin-left: auto;
+
+    color: var(--marron);
+
+    font-size: 20px;
+
+    font-family: "tomato";
+
+    letter-spacing: 2px;
+
+}
+
+
+/****************************/
+/*GRID DE SELLOS*/
+/****************************/
+
+.sellos-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 35px 25px;
+
+    padding: 35px 15px 45px;
+
+}
+
+.sello-pais {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    transition: transform 0.3s ease;
+
+}
+
+.imagen-sello {
+
+    width: 200px;
+
+    height: 200px;
+
+    object-fit: contain;
+
+    padding-bottom: 5px;
+
+    transition: transform 0.3s ease;
+
+}
+
+.sello-pais:nth-child(even) .imagen-sello {
+
+    transform: rotate(5deg);
+
+}
+
+.sello-pais:nth-child(odd) .imagen-sello {
+
+    transform: rotate(-4deg);
+
+}
+
+.sello-pais:hover {
+
+    transform: translateY(-5px);
+
+}
+
+.sello-pais:hover .imagen-sello {
+
+    transform: rotate(0deg) scale(1.08);
+
+}
+
+.sello-pais h3 {
+
+    margin: 8px 0 5px;
+
+    color: var(--azul);
+
+    font-family: "wavery";
+
+    text-transform: uppercase;
+
+    font-size: 22px;
+
+    font-weight: normal;
+
+}
+
+.sello-pais:hover h3 {
+
+    color: var(--rojo);
+
+}
+
+
+/**************************************************/
+/*
+*
+* CSS DE DETALLE.HTML
+*
+**************************************************/
+
+/*RUTA DE NAVEGACIÓN*/
+
+.volver-pasaporte {
+
+    display: inline-block;
+
+    color: var(--marron);
+
+    font-family: "wavery";
+
+    font-size: 19px;
+
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+
+}
+
+.volver-pasaporte:hover {
+
+    color: var(--rojo);
+
+}
+
+.separador-ruta {
+
+    color: var(--rojoCL);
+
+    margin: 0 8px;
+
+}
+
+.pais-actual {
+
+    color: var(--azul);
+
+    font-family: "wavery";
+
+    font-size: 19px;
+
+    text-transform: uppercase;
+
+}
+
+
+/*CABECERA*/
+
+.detalle-header {
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    border-bottom: 3px dotted var(--marron);
+
+}
+
+.detalle-etiqueta {
+
+    color: var(--rojoCL);
+
+    font-family: "tomato";
+
+    font-size: 15px;
+
+    letter-spacing: 3px;
+
+}
+
+.detalle-header h1 {
+
+    margin: 0px 0;
+
+    color: var(--rojoCL);
+
+    font-family: "tomato";
+
+    font-size: 4em;
+
+    font-weight: normal;
+
+    letter-spacing: 3px;
+
+    text-shadow: 2px 2px 0 rgba(104, 54, 35, 0.15);
+
+}
+
+.detalle-descripcion {
+
+    color: var(--marron);
+
+    font-family: "wavery";
+
+    font-size: 19px;
+
+    text-transform: uppercase;
+
+}
+
+
+/****************************/
+/*GASTRONOMÍA*/
+/****************************/
+
+.gastronomia-pais {
+
+    margin-top: 45px;
+
+}
+
+.gastronomia-titulo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 3px dotted var(--marron);
+
+}
+
+.avion-detalle {
+
+    color: var(--azul);
+
+    font-size: 35px;
+
+}
+
+.gastronomia-titulo h2 {
+
+    margin: 0;
+
+    color: var(--negro);
+
+    font-family: "wavery";
+
+    font-size: 29px;
+
+    font-weight: normal;
+
+    text-transform: uppercase;
+
+}
+
+.gastronomia-titulo p {
+
+    margin: 5px 0 0;
+
+    text-transform: uppercase;
+
+    color: var(--marron);
+
+    font-family: "wavery";
+
+    font-size: 19px;
+
+}
+
+.detalle-contador {
+
+    margin-left: auto;
+
+    color: var(--marron);
+
+    font-family: "tomato";
+
+    font-size: 17px;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+
+}
+
+
+/****************************/
+/*GRID DE PLATOS*/
+/****************************/
+
+.platos-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 35px;
+
+    padding: 40px 10px;
+
+}
+
+
+/****************************/
+/*TARJETAS*/
+/****************************/
+
+.plato-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: rgba(255, 250, 235, 0.55);
+
+    border: 1px solid rgba(104, 54, 35, 0.35);
+
+    box-shadow: 3px 5px 12px rgba(61, 42, 26, 0.10);
+
+    text-decoration: none;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.plato-card:nth-child(even) {
+
+    transform: rotate(1deg);
+
+}
+
+.plato-card:nth-child(odd) {
+
+    transform: rotate(-1deg);
+
+}
+
+.plato-card:hover {
+
+    transform: translateY(-6px) rotate(0deg);
+
+    box-shadow: 5px 9px 18px rgba(61, 42, 26, 0.18);
+
+}
+
+
+/****************************/
+/*IMÁGENES*/
+/****************************/
+
+.plato-imagen-contenedor {
+
+    height: 230px;
+
+    overflow: hidden;
+
+    border-bottom: 2px dotted var(--marron);
+
+}
+
+.plato-imagen {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.4s ease;
+
+}
+
+.plato-card:hover .plato-imagen {
+
+    transform: scale(1.06);
+
+}
+
+
+/****************************/
+/*CONTENIDO*/
+/****************************/
+
+.plato-contenido {
+
+    padding: 22px;
+
+    text-align: center;
+
+}
+
+.plato-numero {
+
+    color: var(--rojoCL);
+
+    font-family: "pacifico";
+
+    font-size: 20px;
+
+    letter-spacing: 2px;
+
+}
+
+.plato-contenido h3 {
+    margin: 12px 0;
+
+    color: var(--azul);
+
+    font-family: "tomato";
+
+    font-size: 26px;
+
+    font-weight: lighter;
+
+    transition: color 0.3s ease;
+
+}
+
+.plato-card:hover h3 {
+    color: var(--rojo);
+
+}
+
+.plato-contenido p {
+    color: var(--negro);
+    font-family: "wavery";
+    font-size: 18px;
+    text-transform: uppercase;
+	text-align: justify;
+	text-justify: inter-word;
+    line-height: 1.5;
+
+}
+
+.plato-peliculas p {
+    color: var(--marron);
+    font-family: "wavery";
+    font-size: 18px;
+	text-align: center !important;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+.plato-peliculas {
+
+    margin-top: 15px;
+
+    padding-top: 12px;
+
+    border-top: 1px dashed var(--rojoCL);
+
+    color: var(--rojoCL);
+
+    font-family: "pacifico";
+
+    font-size: 20px;
+
+    letter-spacing: 2px;
+
+}
+.plato-peliculas p {
+
+    margin: 6px 0;
+
+}
+.plato-enlace {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: var(--rojoCL);
+
+    font-family: "tomato";
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+}
