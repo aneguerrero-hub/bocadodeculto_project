@@ -1,10 +1,342 @@
-/* Sección de platos */
-.dish-grid { align-items: stretch; }
-.dish-card { min-height: 255px; }
-.dish-card h2 { margin-top: 1rem; font-size: 1.45rem; }
-.dish-card .card-topline { align-items: start; }
-.dish-card .tag { white-space: normal; }
-.dish-detail .detail-heading { border-left: 5px solid var(--wine); }
-.dish-detail .detail-heading h1 { max-width: 750px; }
-.dish-detail .related-section .section-heading { align-items: center; }
-@media (max-width: 600px) { .dish-card { min-height: 0; } }
+.recetario-encabezado {
+    margin-top: 1rem;
+    padding: 1rem 0 2rem;
+}
+
+.recetario-encabezado h1 {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: "tomato";
+    font-size: 2.7em;
+    font-weight: normal;
+    color: var(--rojoCL);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 0px rgba(104, 54, 35, 0.15);
+}
+
+.recetario-encabezado img {
+    width: 150px;
+    height: 100px;
+    object-fit: contain;
+    flex-shrink: 0;
+    margin: 0 -15px;
+}
+
+.recetario-encabezado p {
+    margin-top: 10px;
+    color: var(--marron);
+    font-size: 1.5em;
+    font-family: "wavery";
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.recetario-estanteria {
+    width: 100%;
+}
+
+.platos-estanteria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+    padding: 20px 15px 25px;
+}
+
+.plato-caja {
+    min-height: 280px;
+    padding: 7px;
+    display: block;
+    background-color: #813b35;
+    border: 3px solid #68462e;
+    box-shadow: 3px 4px 7px rgba(48, 34, 24, 0.3);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.plato-caja:nth-child(4n + 2) {
+    background-color: #435b65;
+}
+
+.plato-caja:nth-child(4n + 3) {
+    background-color: #a4773f;
+}
+
+.plato-caja:nth-child(4n + 4) {
+    background-color: #586348;
+}
+
+.plato-caja:hover {
+    transform: translateY(-8px);
+}
+
+.plato-tarjeta {
+    min-height: 266px;
+    height: 100%;
+    padding: 20px 15px;
+    border: 2px solid var(--oro);
+    background-color: var(--crema);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.plato-imagen {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plato-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #b58b50;
+}
+
+.plato-tarjeta h2 {
+    margin: 12px 0;
+    color: var(--rojo);
+    font-family: "tomato";
+    font-size: 25px;
+    font-weight: normal;
+}
+
+.plato-pais {
+    margin: 12px 0 0;
+    color: var(--marron);
+    font-family: "Lora", serif;
+    font-size: 16px;
+}
+
+.plato-num-peliculas {
+    margin: 10px 0 0;
+    color: var(--azul);
+    font-family: "Lora", serif;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.plato-detalle {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    align-items: center;
+    padding: 25px;
+    background-color: var(--crema);
+    border: 3px solid var(--rojo);
+    box-shadow: 5px 6px 12px rgba(48, 34, 24, 0.2);
+}
+
+.plato-portada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: var(--azul);
+    border: 4px solid var(--rojoCL);
+    box-shadow: 3px 4px 7px rgba(48, 34, 24, 0.3);
+}
+
+.plato-portada-marco {
+    width: 100%;
+    min-height: 360px;
+    padding: 20px 12px;
+    border: 2px solid var(--oro);
+    background-color: var(--crema);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.plato-portada-imagen {
+    width: 85%;
+    height: 170px;
+    margin: 15px auto;
+    overflow: hidden;
+    border: 3px solid #b58b50;
+}
+
+.plato-portada-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.plato-portada-marco h2 {
+    margin: 10px 0;
+    color: var(--rojo);
+    font-family: "tomato";
+    font-size: 27px;
+    font-weight: normal;
+}
+
+.plato-header {
+    padding-bottom: 20px;
+    border-bottom: 1px dotted #a77e56;
+}
+
+.plato-header h1 {
+    margin: 0;
+    color: var(--rojoCL);
+    font-family: "tomato";
+    font-size: 48px;
+    font-weight: normal;
+    text-align: center;
+    text-shadow: 2px 3px 0px rgba(104, 54, 35, 0.15);
+}
+
+.plato-ficha {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 25px 0;
+    border-bottom: 1px dashed #a77e56;
+}
+
+.plato-dato {
+    padding: 15px;
+    background-color: rgba(129, 59, 53, 0.06);
+    border-left: 3px solid #813b35;
+}
+
+.plato-dato span {
+    color: var(--azul);
+    font-family: "wavery", Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.plato-dato p {
+    margin: 8px 0 0;
+    color: #654b38;
+    font-family: "Lora", serif;
+    font-weight: bolder;
+    font-size: 22px;
+}
+
+.plato-dato a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.plato-dato a:hover {
+    color: var(--rojoCL);
+    text-decoration: underline;
+}
+
+.plato-descripcion {
+    padding: 25px 0;
+    border-bottom: 1px dashed #a77e56;
+}
+
+.plato-descripcion h2,
+.plato-cine h2 {
+    margin: 0 0 15px;
+    color: var(--rojo);
+    font-family: "tomato";
+    font-size: 28px;
+    text-transform: none;
+    font-weight: normal;
+}
+
+.plato-descripcion p {
+    margin: 0;
+    color: #654b38;
+    text-transform: none;
+    font-family: "Lora", serif;
+    font-weight: bolder;
+    font-size: 17px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.plato-cine {
+    padding-top: 25px;
+}
+
+.plato-peliculas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.plato-pelicula {
+    position: relative;
+    padding: 0.3rem 0.6rem;
+    border: 2px solid var(--crema);
+    background-color: var(--azul);
+    color: var(--crema);
+    font-family: "wavery";
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 2px var(--negro), 0 4px 0 var(--negro), 0 7px 12px rgb(0 0 0 / 30%);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+}
+
+.plato-pelicula:hover {
+    background-color: var(--oro);
+    color: var(--negro);
+    transform: translateY(-3px);
+    box-shadow: 0 0 0 2px var(--negro), 0 4px 0 var(--negro), 0 7px 12px rgb(0 0 0 / 30%);
+}
+
+.plato-sin-peliculas {
+    color: var(--marron);
+    font-family: "Lora", serif;
+    font-size: 16px;
+}
+
+@media (max-width: 700px) {
+    .plato-detalle {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 15px;
+    }
+
+    .plato-portada {
+        width: 100%;
+    }
+
+    .plato-portada-marco {
+        min-height: 260px;
+    }
+
+    .plato-header h1 {
+        font-size: 36px;
+    }
+
+    .platos-estanteria {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+    .plato-caja {
+        min-height: 240px;
+    }
+
+    .plato-tarjeta {
+        min-height: 226px;
+        padding: 15px 8px;
+    }
+
+    .plato-tarjeta h2 {
+        font-size: 20px;
+    }
+}
