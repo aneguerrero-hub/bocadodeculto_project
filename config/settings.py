@@ -129,5 +129,8 @@ MAILERS = {
     },
 }
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Use an explicit default primary-key type for new models.
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

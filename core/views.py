@@ -5,7 +5,6 @@ from .models import Pais, Pelicula, Plato
 
 
 def portada(request):
-    """Show one featured dish per country, prioritizing dishes in more films."""
     paises = Pais.objects.order_by("nombre").prefetch_related(
         Prefetch(
             "platos",

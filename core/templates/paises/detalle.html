@@ -1,43 +1,103 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block otros_css %}
+<link rel="stylesheet" href="{% static 'css/paises.css' %}">
+{% endblock %}
 
-{% block title %}{{ pais.nombre }} | Bocado de Culto{% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{% static 'css/paises.css' %}">{% endblock %}
+{% block contenido %}
+<main class="pasaporte-contenedor">
+	
+	<section class="pasaporte">
+		<div class="borde-estrellas borde-superior">
+		    {% for i in "12345678901234567890123456789012345678901234567890" %}
+		        <span>★</span>
+		    {% endfor %}
+		</div>
+		<div class="borde-estrellas borde-inferior">
+		    {% for i in "12345678901234567890123456789012345678901234567890" %}
+		        <span>★</span>
+		    {% endfor %}
+		</div>
+		<div class="borde-estrellas borde-izquierdo">
+		    {% for i in "12345678901234567890123456789012345678901234567890" %}
+		        <span>★</span>
+		    {% endfor %}
+		</div>
+		<div class="borde-estrellas borde-derecho">
+		    {% for i in "12345678901234567890123456789012345678901234567890" %}
+		        <span>★</span>
+		    {% endfor %}
+		</div>
+		
+    <section class="detalle-pasaporte">
+		
+		<a href="{% url 'lista_paises' %}#paises" class="volver-pasaporte">
+		    PAÍSES
+		</a>
+		<span class="separador-ruta"> / </span>
+		<span class="pais-actual">
+		    {{ pais.nombre }}
+		</span>
+		
+		<!--encabezado-->
+		<header class="detalle-header">
+		    <h1>{{ pais.nombre }}</h1>
+		    {% if pais.descripcion %}
+		        <p class="detalle-descripcion">
+		            {{ pais.descripcion }}
+		        </p>
+		    {% endif %}
 
-{% block content %}
-<nav class="breadcrumbs" aria-label="Ruta de navegación"><a href="{% url 'portada' %}">Inicio</a><span aria-hidden="true">/</span><a href="{% url 'lista_paises' %}">Países</a><span aria-hidden="true">/</span><span aria-current="page">{{ pais.nombre }}</span></nav>
-<header class="detail-heading country-detail-heading">
-    <p class="eyebrow">Pasaporte gastronómico</p>
-    <h1>{{ pais.nombre }}</h1>
-    <p>Los platos y las películas que conectan con este país en nuestro catálogo.</p>
-    <div class="detail-tags"><span class="tag">{{ pais.platos.all|length }} plato{{ pais.platos.all|length|pluralize:"s" }}</span><span class="tag tag-light">{{ pais.peliculas.all|length }} película{{ pais.peliculas.all|length|pluralize:"s" }}</span></div>
-</header>
+		</header>
+		<!----------------------------------------------->
+		
+		<section class="gastronomia-pais">
+			
+		    <div class="gastronomia-titulo">
+		        <span class="avion-detalle">✈︎</span>
+		        <div>
+		            <h2>Sabores del destino</h2>
+		            <p>Un viaje a través de su gastronomía</p>
+		        </div>
 
-<section class="related-section" aria-labelledby="country-dishes-title">
-    <div class="section-heading"><div><p class="eyebrow">Sabores de aquí</p><h2 id="country-dishes-title">Platos del país</h2></div><a class="text-link" href="{% url 'lista_platos' %}">Todos los platos →</a></div>
-    <div class="card-grid country-dishes-grid">
-        {% for plato in pais.platos.all %}
-            <article class="info-card related-card">
-                <div class="card-topline"><span class="tag">{{ pais.nombre }}</span><span class="price">Precio: {{ plato.precio }}</span></div>
-                <h3><a href="{% url 'detalle_plato' plato.id %}">{{ plato.nombre }}</a></h3>
-                <p>{{ plato.descripcion|truncatewords:26 }}</p>
-                <a class="text-link" href="{% url 'detalle_plato' plato.id %}">Ver plato <span aria-hidden="true">↗</span></a>
-            </article>
-        {% empty %}
-            <p class="empty-inline">Todavía no hay platos asociados a este país.</p>
-        {% endfor %}
-    </div>
-</section>
+		        <span class="detalle-contador">
+		            {{ pais.platos.count }} PLATOS
+		        </span>
+		    </div>
 
-<section class="related-section" aria-labelledby="country-films-title">
-    <div class="section-heading"><div><p class="eyebrow">Historias en pantalla</p><h2 id="country-films-title">Películas del país</h2></div><a class="text-link" href="{% url 'lista_peliculas' %}">Todas las películas →</a></div>
-    <div class="related-list">
-        {% for pelicula in pais.peliculas.all %}
-            <article class="related-item"><div><h3><a href="{% url 'detalle_pelicula' pelicula.id %}">{{ pelicula.titulo }}</a></h3><p>Dirección: {{ pelicula.director }}</p></div><a class="round-link" href="{% url 'detalle_pelicula' pelicula.id %}" aria-label="Ver {{ pelicula.titulo }}">↗</a></article>
-        {% empty %}
-            <p class="empty-inline">Todavía no hay películas asociadas a este país.</p>
-        {% endfor %}
-    </div>
-</section>
-<a class="back-link" href="{% url 'lista_paises' %}">← Volver a todos los países</a>
+		    <div class="platos-grid">
+		        {% for plato in pais.platos.all %}
+		            <a href="{% url 'detalle_plato' plato.id %}"
+		               class="plato-card">
+
+		                {% if plato.imagen %}
+		                    <div class="plato-imagen-contenedor">
+		                        <img src="{{ plato.imagen.url }}"
+		                             alt="{{ plato.nombre }}"
+		                             class="plato-imagen">
+		                    </div>
+		                {% endif %}
+		                <div class="plato-contenido">
+		                    <span class="plato-numero">Especialidad</span>
+		                    <h3>★ {{ plato.nombre }} ★</h3>
+		                    {% if plato.descripcion %}
+		                        <p>{{ plato.descripcion }}</p>
+		                    {% endif %}
+		                    <!-- PELÍCULAS EN LAS QUE APARECE -->
+		                    {% if plato.peliculas.all %}
+		                        <div class="plato-peliculas">
+		                            <span>Películas</span>
+		                            {% for pelicula in plato.peliculas.all %}
+		                                <p>{{ pelicula.titulo }}</p>
+		                            {% endfor %}
+		                        </div>
+		                    {% endif %}
+		                </div>
+		            </a>
+		        {% endfor %}
+		    </div>
+		</section>
+	</section>
+</main>
+
 {% endblock %}
