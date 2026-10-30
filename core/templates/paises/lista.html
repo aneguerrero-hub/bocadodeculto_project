@@ -1,68 +1,363 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block otros_css %}
-<link rel="stylesheet" href="{% static 'css/paises.css' %}">
-{% endblock %}
+<!doctype html>
+<html lang="es">
 
-{% block contenido %}
-<main class="pasaporte-contenedor">
-	
-    <section class="pasaporte">
-		<div class="borde-estrellas borde-superior">
-		    {% for i in "12345678901234567890123456789012345678901234567890" %}
-		        <span>★</span>
-		    {% endfor %}
-		</div>
-		<div class="borde-estrellas borde-inferior">
-		    {% for i in "12345678901234567890123456789012345678901234567890" %}
-		        <span>★</span>
-		    {% endfor %}
-		</div>
-		<div class="borde-estrellas borde-izquierdo">
-		    {% for i in "12345678901234567890123456789012345678901234567890" %}
-		        <span>★</span>
-		    {% endfor %}
-		</div>
-		<div class="borde-estrellas borde-derecho">
-		    {% for i in "12345678901234567890123456789012345678901234567890" %}
-		        <span>★</span>
-		    {% endfor %}
-		</div>
-		
-		<!--encabezado-->
-        <header class="pasaporte-header">
-            <div class="pasaporte-titulo">
-				<h1>
-				    <span>Pasaporte</span>
-				    <img src="{% static 'images/sello.png' %}"
-				         alt="Cámara"
-				         class="icono-sello">
-				    <span>Gastronómico</span>
-				</h1>
-            </div>
-        </header>
-		<!----------------------------------------------->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bocado de Culto: platos, países y películas que unen cine y gastronomía.">
 
-        <div class="pasaporte-sellos">
-            <span class="unicode-avion">✈︎</span>
-            <div>
-                <h2>Mis destinos</h2>
-                <p>Selecciona un sello para comenzar tu viaje.</p>
-            </div>
-            <span class="num-sellos">14 SELLOS</span>
+    <title>Bocado de Culto</title>
+
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/paises.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <div class="banner">
+            <a class="goback" href="{% url 'portada' %}">
+                <img class="logo" src="{% static 'images/logo.png' %}" alt="Bocado de Culto">
+            </a>
         </div>
 
-        <section class="sellos-grid" id="paises">
-			{% for pais in paises %}
-				<a class="sello-pais" href="{% url 'detalle_pais' pais.id %}">
-					<img class="imagen-sello"
-			        src="{% static 'images/sellos/sello-' %}{{ pais.nombre|slugify }}.jpg"
-			        alt="Sello de {{ pais.nombre }}">
-					<h3>{{ pais.nombre }}</h3>
-			   </a>
-			{% endfor %}
-        </section>
-		
-    </section>
-</main>
-{% endblock %}
+        <nav class="indice">
+            <div class="indice-div">
+                <a class="indice-link ticket-inicio"
+                   href="{% url 'portada' %}"></a>
+
+                <a class="indice-link ticket-platos"
+                   href="{% url 'lista_platos' %}"></a>
+
+                <a class="indice-link ticket-paises is-active"
+                   href="{% url 'lista_paises' %}"
+                   aria-current="page"></a>
+
+                <a class="indice-link ticket-peliculas"
+                   href="{% url 'lista_peliculas' %}"></a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="contenedor-principal">
+        <main id="contenido" class="fondo-menu">
+            <p class="titulo-menu">Menú</p>
+
+            <div class="pasaporte-contenedor">
+
+                <section class="pasaporte">
+
+                    <div class="borde-estrellas borde-superior">
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                    </div>
+
+                    <div class="borde-estrellas borde-inferior">
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                    </div>
+
+                    <div class="borde-estrellas borde-izquierdo">
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                    </div>
+
+                    <div class="borde-estrellas borde-derecho">
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                    </div>
+
+                    <!-- Encabezado -->
+                    <header class="pasaporte-header">
+                        <div class="pasaporte-titulo">
+                            <h1>
+                                <span>Pasaporte</span>
+                                <img src="{% static 'images/sello.png' %}"
+                                     alt="Cámara"
+                                     class="icono-sello">
+                                <span>Gastronómico</span>
+                            </h1>
+                        </div>
+                    </header>
+
+                    <!-- Separador del encabezado -->
+                    <div class="pasaporte-sellos">
+                        <span class="unicode-avion">✈︎</span>
+                        <div>
+                            <h2>Mis destinos</h2>
+                            <p>Selecciona un sello para comenzar tu viaje.</p>
+                        </div>
+                        <span class="num-sellos">14 SELLOS</span>
+                    </div>
+
+                    <section class="sellos-grid" id="paises">
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 9 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-china.jpg' %}" alt="Sello de China">
+                            <h3>China</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 10 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-corea-del-sur.jpg' %}" alt="Sello de Corea del Sur">
+                            <h3>Corea del Sur</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 14 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-cuba.jpg' %}" alt="Sello de Cuba">
+                            <h3>Cuba</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 8 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-espana.jpg' %}" alt="Sello de España">
+                            <h3>España</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 1 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-estados-unidos.jpg' %}" alt="Sello de Estados Unidos">
+                            <h3>Estados Unidos</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 4 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-francia.jpg' %}" alt="Sello de Francia">
+                            <h3>Francia</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 12 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-grecia.jpg' %}" alt="Sello de Grecia">
+                            <h3>Grecia</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 6 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-india.jpg' %}" alt="Sello de India">
+                            <h3>India</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 2 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-italia.jpg' %}" alt="Sello de Italia">
+                            <h3>Italia</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 3 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-japon.jpg' %}" alt="Sello de Japón">
+                            <h3>Japón</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 5 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-mexico.jpg' %}" alt="Sello de México">
+                            <h3>México</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 7 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-reino-unido.jpg' %}" alt="Sello de Reino Unido">
+                            <h3>Reino Unido</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 13 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-tailandia.jpg' %}" alt="Sello de Tailandia">
+                            <h3>Tailandia</h3>
+                        </a>
+
+                        <a class="sello-pais" href="{% url 'detalle_pais' 11 %}">
+                            <img class="imagen-sello" src="{% static 'images/sellos/sello-taiwan.jpg' %}" alt="Sello de Taiwán">
+                            <h3>Taiwán</h3>
+                        </a>
+
+                    </section>
+
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-contenido">
+
+            <nav class="footer-links">
+                <a href="{% url 'portada' %}">Inicio</a>
+                <a href="{% url 'lista_platos' %}">Platos</a>
+                <a href="{% url 'lista_paises' %}">Países</a>
+                <a href="{% url 'lista_peliculas' %}">Películas</a>
+            </nav>
+
+            <em>¡A Dios pongo por testigo que jamás volveré a pasar hambre!</em>
+
+            <span class="footer-cita-autor">
+                — Scarlett O'Hara, <cite>Lo que el viento se llevó</cite> (1939)
+            </span>
+
+            <br>
+
+            <p class="footer-copy">
+                &copy; 2026 Bocado de Culto | Proyecto web de cine y gastronomía
+                <br>
+            </p>
+
+            <div>
+                <a href="https://validator.w3.org/">
+                    <img src="https://www.w3.org/Icons/valid-html401" alt="HTML válido">
+                </a>
+
+                <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                    <img src="https://jigsaw.w3.org/css-validator/images/vcss" alt="CSS válido">
+                </a>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

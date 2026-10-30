@@ -1,103 +1,127 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block otros_css %}
 <link rel="stylesheet" href="{% static 'css/paises.css' %}">
 {% endblock %}
 
 {% block contenido %}
-<main class="pasaporte-contenedor">
-	
-	<section class="pasaporte">
-		<div class="borde-estrellas borde-superior">
-		    {% for i in "12345678901234567890123456789012345678901234567890" %}
-		        <span>★</span>
-		    {% endfor %}
-		</div>
-		<div class="borde-estrellas borde-inferior">
-		    {% for i in "12345678901234567890123456789012345678901234567890" %}
-		        <span>★</span>
-		    {% endfor %}
-		</div>
-		<div class="borde-estrellas borde-izquierdo">
-		    {% for i in "12345678901234567890123456789012345678901234567890" %}
-		        <span>★</span>
-		    {% endfor %}
-		</div>
-		<div class="borde-estrellas borde-derecho">
-		    {% for i in "12345678901234567890123456789012345678901234567890" %}
-		        <span>★</span>
-		    {% endfor %}
-		</div>
-		
-    <section class="detalle-pasaporte">
-		
-		<a href="{% url 'lista_paises' %}#paises" class="volver-pasaporte">
-		    PAÍSES
-		</a>
-		<span class="separador-ruta"> / </span>
-		<span class="pais-actual">
-		    {{ pais.nombre }}
-		</span>
-		
-		<!--encabezado-->
-		<header class="detalle-header">
-		    <h1>{{ pais.nombre }}</h1>
-		    {% if pais.descripcion %}
-		        <p class="detalle-descripcion">
-		            {{ pais.descripcion }}
-		        </p>
-		    {% endif %}
 
-		</header>
-		<!----------------------------------------------->
-		
-		<section class="gastronomia-pais">
-			
-		    <div class="gastronomia-titulo">
-		        <span class="avion-detalle">✈︎</span>
-		        <div>
-		            <h2>Sabores del destino</h2>
-		            <p>Un viaje a través de su gastronomía</p>
-		        </div>
+<div class="pasaporte-contenedor">
 
-		        <span class="detalle-contador">
-		            {{ pais.platos.count }} PLATOS
-		        </span>
-		    </div>
+    <section class="pasaporte">
 
-		    <div class="platos-grid">
-		        {% for plato in pais.platos.all %}
-		            <a href="{% url 'detalle_plato' plato.id %}"
-		               class="plato-card">
+        <div class="borde-estrellas borde-superior">
+            {% for i in "12345678901234567890123456789012345678901234567890" %}
+                <span>★</span>
+            {% endfor %}
+        </div>
 
-		                {% if plato.imagen %}
-		                    <div class="plato-imagen-contenedor">
-		                        <img src="{{ plato.imagen.url }}"
-		                             alt="{{ plato.nombre }}"
-		                             class="plato-imagen">
-		                    </div>
-		                {% endif %}
-		                <div class="plato-contenido">
-		                    <span class="plato-numero">Especialidad</span>
-		                    <h3>★ {{ plato.nombre }} ★</h3>
-		                    {% if plato.descripcion %}
-		                        <p>{{ plato.descripcion }}</p>
-		                    {% endif %}
-		                    <!-- PELÍCULAS EN LAS QUE APARECE -->
-		                    {% if plato.peliculas.all %}
-		                        <div class="plato-peliculas">
-		                            <span>Películas</span>
-		                            {% for pelicula in plato.peliculas.all %}
-		                                <p>{{ pelicula.titulo }}</p>
-		                            {% endfor %}
-		                        </div>
-		                    {% endif %}
-		                </div>
-		            </a>
-		        {% endfor %}
-		    </div>
-		</section>
-	</section>
-</main>
+        <div class="borde-estrellas borde-inferior">
+            {% for i in "12345678901234567890123456789012345678901234567890" %}
+                <span>★</span>
+            {% endfor %}
+        </div>
+
+        <div class="borde-estrellas borde-izquierdo">
+            {% for i in "12345678901234567890123456789012345678901234567890" %}
+                <span>★</span>
+            {% endfor %}
+        </div>
+
+        <div class="borde-estrellas borde-derecho">
+            {% for i in "12345678901234567890123456789012345678901234567890" %}
+                <span>★</span>
+            {% endfor %}
+        </div>
+
+        <div class="detalle-pasaporte">
+
+            <a href="{% url 'lista_paises' %}#paises" class="volver-pasaporte">
+                PAÍSES
+            </a>
+
+            <span class="separador-ruta"> / </span>
+
+            <span class="pais-actual">
+                {{ pais.nombre }}
+            </span>
+
+            <header class="detalle-header">
+                <h1>{{ pais.nombre }}</h1>
+
+                {% if pais.descripcion %}
+                    <p class="detalle-descripcion">
+                        {{ pais.descripcion }}
+                    </p>
+                {% endif %}
+            </header>
+
+            <section class="gastronomia-pais">
+
+                <div class="gastronomia-titulo">
+                    <span class="avion-detalle">✈︎</span>
+
+                    <div>
+                        <h2>Sabores del destino</h2>
+                        <p>Un viaje a través de su gastronomía</p>
+                    </div>
+
+                    <span class="detalle-contador">
+                        {{ pais.platos.count }} PLATOS
+                    </span>
+                </div>
+
+                <div class="platos-grid">
+
+                    {% for plato in pais.platos.all %}
+
+                        <a href="{% url 'detalle_plato' plato.id %}" class="plato-card">
+
+                            {% if plato.imagen %}
+                                <div class="plato-imagen-contenedor">
+                                    <img src="{{ plato.imagen.url }}"
+                                         alt="{{ plato.nombre }}"
+                                         class="plato-imagen">
+                                </div>
+                            {% endif %}
+
+                            <div class="plato-contenido">
+
+                                <span class="plato-numero">Especialidad</span>
+
+                                <h3>★ {{ plato.nombre }} ★</h3>
+
+                                {% if plato.descripcion %}
+                                    <p>{{ plato.descripcion }}</p>
+                                {% endif %}
+
+                                {% if plato.peliculas.exists %}
+                                    <div class="plato-peliculas">
+                                        <span>Películas</span>
+
+                                        {% for pelicula in plato.peliculas.all %}
+                                            <p>{{ pelicula.titulo }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                            </div>
+
+                        </a>
+
+                    {% empty %}
+                        <p>Todavía no hay platos asociados a este país.</p>
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </section>
+
+</div>
 
 {% endblock %}
