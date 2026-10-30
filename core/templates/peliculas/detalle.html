@@ -1,39 +1,93 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ pelicula.titulo }} | Bocado de Culto{% endblock %}
-{% block extra_css %}<link rel="stylesheet" href="{% static 'css/pelis.css' %}">{% endblock %}
+{% block otros_css %}
+<link rel="stylesheet" href="{% static 'css/pelis.css' %}">
+<link rel="stylesheet" href="{% static 'css/paises.css' %}">
 
-{% block content %}
-<nav class="breadcrumbs" aria-label="Ruta de navegación"><a href="{% url 'portada' %}">Inicio</a><span aria-hidden="true">/</span><a href="{% url 'lista_peliculas' %}">Películas</a><span aria-hidden="true">/</span><span aria-current="page">{{ pelicula.titulo }}</span></nav>
-<article class="detail-page movie-detail">
-    <header class="detail-heading movie-detail-heading">
-        <p class="eyebrow">Ficha de película</p>
-        <h1>{{ pelicula.titulo }}</h1>
-        <div class="detail-tags"><span class="tag">{{ pelicula.director }}</span><a class="tag tag-light tag-link" href="{% url 'detalle_pais' pelicula.pais.id %}">{{ pelicula.pais.nombre }}</a></div>
-    </header>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+{% endblock %}
 
-    <section class="detail-panel" aria-labelledby="movie-info-title">
-        <h2 id="movie-info-title">Sinopsis</h2>
-        <p class="detail-description">{{ pelicula.sinopsis }}</p>
-        <dl class="detail-facts"><div><dt>Dirección</dt><dd>{{ pelicula.director }}</dd></div><div><dt>País asociado</dt><dd><a href="{% url 'detalle_pais' pelicula.pais.id %}">{{ pelicula.pais.nombre }}</a></dd></div></dl>
-    </section>
+{% block contenido %}
+	<br>
+	<br>
+	<br>
+	<a href="{% url 'lista_peliculas' %}#videoclub" class="volver-pasaporte">
+	    PELÍCULAS
+	</a>
+	<span class="separador-ruta"> / </span>
+	<span class="pais-actual">
+	    {{ pelicula.titulo }}
+	</span>
 
-    <section class="related-section" aria-labelledby="movie-dishes-title">
-        <div class="section-heading"><div><p class="eyebrow">El menú de la película</p><h2 id="movie-dishes-title">Platos asociados</h2></div></div>
-        <div class="card-grid movie-dishes-grid">
-            {% for plato in pelicula.platos_maridados.all %}
-                <article class="info-card related-card">
-                    <div class="card-topline"><a class="tag tag-link" href="{% url 'detalle_pais' plato.pais_origen.id %}">{{ plato.pais_origen.nombre }}</a><span class="price">Precio: {{ plato.precio }}</span></div>
-                    <h3><a href="{% url 'detalle_plato' plato.id %}">{{ plato.nombre }}</a></h3>
-                    <p>{{ plato.descripcion|truncatewords:24 }}</p>
-                    <a class="text-link" href="{% url 'detalle_plato' plato.id %}">Ver plato <span aria-hidden="true">↗</span></a>
-                </article>
-            {% empty %}
-                <p class="empty-inline">Esta película todavía no tiene platos asociados.</p>
-            {% endfor %}
+	<section class="pelicula-detalle">
+
+    <div class="detalle-portada">
+        <div class="detalle-portada-marco">
+            <img src="{% static 'images/portadas/' %}{{ pelicula.titulo|slugify }}.jpg"
+                 alt="{{ pelicula.titulo }}">
         </div>
-    </section>
-    <a class="back-link" href="{% url 'lista_peliculas' %}">← Volver a todas las películas</a>
-</article>
+    </div>
+
+    <!--INFORMACIÓN-->
+    <div class="detalle-informacion">
+
+        <header class="detalle-header">
+            <h1>{{ pelicula.titulo }}</h1>
+        </header>
+
+        <!--FICHA TÉCNICA-->
+        <section class="detalle-ficha">
+
+            <div class="detalle-dato">
+                <span>DIRECTOR</span>
+                <p>{{ pelicula.director }}</p>
+            </div>
+
+            <div class="detalle-dato">
+                <span>PAÍS</span>
+                <p>
+                    {% if pelicula.pais %}
+                        {{ pelicula.pais.nombre }}
+                    {% else %}
+                        No especificado
+                    {% endif %}
+                </p>
+            </div>
+
+        </section>
+
+        <!--DESCRIPCIÓN-->
+		<section class="detalle-descripcion">
+		    <h2>Sinopsis</h2>
+
+			{% if pelicula.sinopsis %}
+			    <p>{{ pelicula.sinopsis }}</p>
+			{% else %}
+			    <p>Sin sinopsis disponible.</p>
+		    {% endif %}
+		</section>
+
+        <!--PLATOS RELACIONADOS-->
+        <section class="detalle-gastronomia">
+            <h2>Platos de la película</h2>
+
+            <div class="detalle-platos">
+                {% for plato in pelicula.platos_maridados.all %}
+                    <a href="{% url 'detalle_plato' plato.id %}"
+                       class="detalle-plato">
+                        {{ plato.nombre }}
+                    </a>
+                {% empty %}
+                    <p class="detalle-sin-platos">
+                        Todavía no hay platos relacionados con esta película.
+                    </p>
+                {% endfor %}
+            </div>
+        </section>
+
+    </div>
+
+</section>
+
 {% endblock %}

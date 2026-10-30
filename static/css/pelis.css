@@ -1,17 +1,238 @@
-/* Sección de películas */
-.movie-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.movie-card { min-height: 290px; }
-.movie-card-top { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem; }
-.movie-reel { display: grid; width: 40px; height: 40px; flex: 0 0 40px; place-items: center; color: #f2d58e; background: #302023; border-radius: 10px; font-size: 1.2rem; }
-.movie-card h2 { margin: 1rem 0 0.35rem; font-size: 1.65rem; }
-.director-line { margin-bottom: 0.6rem; color: var(--wine) !important; font-size: 0.82rem !important; font-weight: 800; }
-.movie-card .card-footer { align-items: end; margin-top: auto; }
-.movie-detail-heading { color: white; background: linear-gradient(135deg, #2e2022, #69242e); border-color: #69242e; }
-.movie-detail-heading .eyebrow { color: #f0ce7e; }
-.movie-detail-heading h1 { color: #fff8ee; }
-.movie-detail-heading > p:not(.eyebrow) { color: #ead9d2; }
-.movie-detail-heading .tag { color: #382323; background: #efd18a; }
-.movie-detail-heading .tag-light { color: #fff5e8; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255,255,255,0.2); }
-.movie-dishes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.movie-dishes-grid .related-card { min-height: 205px; }
-@media (max-width: 700px) { .movie-grid, .movie-dishes-grid { grid-template-columns: 1fr; } }
+.videoclub-encabezado {
+	margin-top: 1rem;
+	padding: 1rem 0 2rem;
+}
+
+.videoclub-encabezado h1 {
+	max-width: 800px;
+	margin: 0 auto;
+	font-family: "tomato";
+	font-size: 2.7em;
+	font-weight: normal;
+	color: var(--rojoCL);
+	text-align: center;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+
+	gap: 0;
+	letter-spacing: 2px;
+	line-height: 1.1;
+
+	text-shadow: 2px 2px 0px rgba(104, 54, 35, 0.15);
+}
+
+.videoclub-encabezado img {
+	width: 150px;
+	height: 100px;
+	object-fit: contain;
+	flex-shrink: 0;
+	margin: 0 -15px;
+}
+
+.videoclub-encabezado p {
+	margin-top: 10px;
+	color: var(--marron);
+	font-size: 1.5em;
+	font-family: "wavery";
+	text-transform: uppercase;
+	text-align: center;
+}
+/**********************************************/
+.videoclub-estanteria {
+    width: 100%;
+}
+
+.peliculas-estanteria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+    padding: 20px 15px 25px;
+}
+
+.pelicula-caja {
+    height: 280px;
+    padding: 7px;
+    display: block;
+    background-color: #813b35;
+    border: 3px solid #68462e;
+    box-shadow: 3px 4px 7px rgba(48, 34, 24, 0.3);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.pelicula-caja:nth-child(4n + 2) {
+    background-color: #435b65;
+}
+.pelicula-caja:nth-child(4n + 3) {
+    background-color: #a4773f;
+}
+.pelicula-caja:nth-child(4n + 4) {
+    background-color: #586348;
+}
+.pelicula-caja:hover {
+    transform: translateY(-8px);
+}
+
+.pelicula-imagen {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--crema);
+}
+
+.pelicula-imagen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/**************************
+*
+* DETALLE CSSS
+*
+*****************************/
+
+.pelicula-detalle {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    align-items: center;
+    padding: 25px;
+    background-color: var(--crema);
+    border: 3px solid var(--rojo);
+    box-shadow: 5px 6px 12px rgba(48, 34, 24, 0.2);
+}
+
+.detalle-portada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+    background-color: var(--azul);
+    border: 4px solid var(--rojoCL);
+    box-shadow: 3px 4px 7px rgba(48, 34, 24, 0.3);
+}
+
+.detalle-portada-marco {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border: 2px solid var(--oro);
+    overflow: hidden;
+}
+
+.detalle-portada img {
+    display: block;
+    width: 100%;
+    height: 100%;
+	object-fit: cover;
+}
+
+.detalle-ficha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 25px 0;
+    border-bottom: 1px dashed #a77e56;
+}
+
+.detalle-dato {
+    padding: 15px;
+    background-color: rgba(129, 59, 53, 0.06);
+    border-left: 3px solid #813b35;
+}
+
+.detalle-dato span {
+    color: var(--azul);
+    font-family: "wavery", Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.detalle-dato p {
+    margin: 8px 0 0;
+    color: #654b38;
+    font-family: "Lora", serif;
+	font-weight: bolder;
+    font-size: 25px;
+}
+
+.detalle-descripcion {
+    padding: 25px 0;
+    border-bottom: 1px dashed #a77e56;
+}
+
+.detalle-descripcion h2,
+.detalle-gastronomia h2 {
+    margin: 0 0 15px;
+    color: var(--rojo);
+    font-family: "tomato";
+    font-size: 28px;
+	text-transform: none;
+    font-weight: normal;
+}
+
+.detalle-descripcion p {
+    margin: 0;
+    color: #654b38;
+	text-transform: none;
+    font-family: "Lora", serif;
+	font-weight: bolder;
+    font-size: 17px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.detalle-gastronomia {
+    padding-top: 25px;
+}
+
+.detalle-platos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.detalle-plato {
+	position: relative;
+	padding: 0.3rem 0.6rem;
+	border: 2px solid var(--crema);
+	background-color: var(--azul);
+	color: var(--crema);
+	font-family: "wavery";
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	box-shadow:
+	    0 0 0 2px var(--negro),
+	    0 4px 0 var(--negro),
+	    0 7px 12px rgb(0 0 0 / 30%);
+
+	transition:
+	    transform 0.2s ease,
+	    background 0.2s ease,
+	    box-shadow 0.2s ease;
+		
+	text-decoration: none;
+}
+
+.detalle-plato span {
+    color: #b58a48;
+}
+
+.detalle-plato:hover {
+	background-color: var(--oro);
+	color: var(--negro);
+	transform: translateY(-3px);
+	box-shadow:
+	    0 0 0 2px var(--negro),
+	    0 4px 0 var(--negro),
+	    0 7px 12px rgb(0 0 0 / 30%);
+}
+

@@ -16,7 +16,6 @@ class Pais(models.Model):
 class Plato(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
-    precio = models.DecimalField(max_digits=6, decimal_places=2)
     pais_origen = models.ForeignKey(Pais, on_delete=models.CASCADE, related_name='platos')
 
     class Meta:

@@ -7,7 +7,7 @@ class PaisAdmin(admin.ModelAdmin):
 
 @admin.register(Plato)
 class PlatoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'precio', 'pais_origen')
+    list_display = ('id', 'nombre', 'pais_origen')
 
 @admin.register(Pelicula)
 class PeliculaAdmin(admin.ModelAdmin):
