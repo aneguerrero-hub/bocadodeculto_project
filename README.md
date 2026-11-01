@@ -21,7 +21,7 @@ Después, abre `http://127.0.0.1:8000/`. El panel de administración está en `h
 ## Secciones
 
 - **Inicio** (`/`): muestra un plato destacado de cada país con platos registrados. Se priorizan los platos asociados a más películas.
-- **Platos** (`/platos/`, `/platos/<id>/`): catálogo y ficha de plato con descripción, precio, país y películas asociadas.
+- **Platos** (`/platos/`, `/platos/<id>/`): catálogo y ficha de plato con descripción, país y películas asociadas.
 - **Países** (`/paises/`, `/paises/<id>/`): catálogo y ficha de país con sus platos y películas.
 - **Películas** (`/peliculas/`, `/peliculas/<id>/`): catálogo y ficha de película con director, sinopsis, país y platos asociados.
 - **Administración** (`/admin/`): gestión de los datos mediante el panel nativo de Django.
